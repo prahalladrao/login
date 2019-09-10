@@ -19,7 +19,7 @@ public class LoginRepoImpl implements LoginRepo{
     @Override
     public  User findByEmail(String userName) {
 
-        System.out.println("repo "+userName);
+        //System.out.println("repo "+userName);
          try
          {
              User user = jdbctemplate.queryForObject("select * from user where email=?", new Object[]{userName}, new BeanPropertyRowMapper<User>(User.class));
