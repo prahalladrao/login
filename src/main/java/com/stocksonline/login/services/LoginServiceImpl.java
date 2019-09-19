@@ -5,6 +5,7 @@ import com.stocksonline.login.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 public class LoginServiceImpl implements LoginService {
     @Autowired
     private LoginRepo loginRepo;
+    //@Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
 
     private static Logger logger= LoggerFactory.getLogger(LoginService.class);
 
@@ -23,7 +26,8 @@ public class LoginServiceImpl implements LoginService {
         User user= loginRepo.findByEmail(userName);
         if(user!=null)
         {
-            if(user.getPassword().equals(password))
+            //System.out.println(bCryptPasswordEncoder.matches(password,bCryptPasswordEncoder.encode(password)));
+            if(bCryptPasswordEncoder.matches(password,bCryptPasswordEncoder.encode(password)))
                 return true;
             logger.info("Incorrect password: {}",RuntimeException.class );
             return false;
