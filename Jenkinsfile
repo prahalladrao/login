@@ -5,15 +5,18 @@ pipeline
    {
       stage('build')
       {
-         if(isUnix())
+       steps
          {
-           sh './gradlew clean build'
+               if(isUnix())
+             {
+               sh './gradlew clean build'
+             }
+             else
+             {
+                echo 'Build'
+                bat 'gradlew.bat clean build'
+              }
          }
-         else
-         {
-            echo 'Build'
-            bat 'gradlew.bat clean build'
-          }
       }
    }
 }
