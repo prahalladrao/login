@@ -7,15 +7,10 @@ pipeline
       {
        steps
          {
-               if(isUnix())
-             {
-               sh './gradlew clean build'
-             }
-             else
-             {
+
                 echo 'Build'
                 bat 'gradlew.bat clean build'
-              }
+
          }
       }
    }
