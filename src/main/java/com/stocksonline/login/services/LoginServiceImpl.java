@@ -26,7 +26,7 @@ public class LoginServiceImpl implements LoginService {
         if(user!=null)
         {
             //System.out.println(bCryptPasswordEncoder.matches(password,bCryptPasswordEncoder.encode(password)));
-            if(user.getPassword().equals(passowrd))
+            if(user.getPassword().equals(password))
                 return true;
             logger.info("Incorrect password: {}",RuntimeException.class );
             return false;
