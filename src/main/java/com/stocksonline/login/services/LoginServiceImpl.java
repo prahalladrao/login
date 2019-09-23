@@ -15,8 +15,7 @@ import org.springframework.stereotype.Service;
 public class LoginServiceImpl implements LoginService {
     @Autowired
     private LoginRepo loginRepo;
-    //@Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
+  
 
     private static Logger logger= LoggerFactory.getLogger(LoginService.class);
 
@@ -27,7 +26,7 @@ public class LoginServiceImpl implements LoginService {
         if(user!=null)
         {
             //System.out.println(bCryptPasswordEncoder.matches(password,bCryptPasswordEncoder.encode(password)));
-            if(bCryptPasswordEncoder.matches(password,bCryptPasswordEncoder.encode(password)))
+            if(user.getPassword().equals(passowrd))
                 return true;
             logger.info("Incorrect password: {}",RuntimeException.class );
             return false;
